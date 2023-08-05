@@ -53,10 +53,10 @@ SELECT animals.name FROM animals JOIN owners ON animals.owner_id = owners.id JOI
 SELECT animals.name FROM animals JOIN owners ON animals.owner_id = owners.id WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
 SELECT owners.full_name, COUNT(animals.id) AS num_owned FROM owners LEFT JOIN animals ON owners.id = animals.owner_id GROUP BY owners.id, owners.full_name ORDER BY num_owned DESC;
 
-SELECT animals.name FROM animals JOIN visits ON animals.id = visits.animal_id JOIN vets ON visits.vet_id = vets.id WHERE vets.name = 'William Tatcher' ORDER BY visits.visit_date DESC;
+SELECT animals.name FROM animals JOIN visits ON animals.id = visits.animal_id JOIN vets ON visits.vet_id = vets.id WHERE vets.name = 'William Tatcher' ORDER BY visits.visit_date DESC LIMIT 1;
 SELECT COUNT(DISTINCT visits.animal_id) AS num_animals_seen FROM visits JOIN vets ON visits.vet_id = vets.id WHERE vets.name = 'Stephanie Mendez';
 SELECT vets.name, species.name FROM vets LEFT JOIN specializations ON vets.id = specializations.vet_id LEFT JOIN species ON specializations.species_id = species.id ORDER BY vets.id, species.id;
-SELECT animals.name FROM animals JOIN visits ON visits.animal_id = animals.id WHERE visits.visit_date BETWEEN '2020-04-01' AND '2020-08-30';
+SELECT animals.name FROM animals JOIN visits ON visits.animal_id = animals.id JOIN vets ON visits.vet_id = vets.id WHERE vets.name = 'Stephanie Mendez' AND visits.visit_date >= '2020-04-01' AND visits.visit_date <= '2020-08-30';
 SELECT animals.name, COUNT(visits.visit_id) AS num_visits FROM animals LEFT JOIN visits ON animals.id = visits.animal_id GROUP BY animals.id, animals.name ORDER BY num_visits DESC LIMIT 1;
 SELECT animals.name, visits.visit_date FROM vets JOIN visits ON vets.id = visits.vet_id JOIN animals ON visits.animal_id = animals.id WHERE vets.name = 'Maisy Smith' ORDER BY visits.visit_date LIMIT 1;
 SELECT animals.name AS animal_name,
