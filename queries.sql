@@ -77,3 +77,11 @@ ORDER BY visits.visit_date DESC LIMIT 1;
 SELECT COUNT(*) AS num_visits_not_specialized FROM visits JOIN animals ON visits.animal_id = animals.id JOIN vets ON visits.vet_id = vets.id LEFT JOIN specializations ON vets.id = specializations.vet_id AND animals.species_id = specializations.species_id WHERE specializations.vet_id IS NULL;
 SELECT species.name AS specialty FROM animals JOIN visits ON animals.id = visits.animal_id JOIN vets ON visits.vet_id = vets.id JOIN species ON animals.species_id = species.id WHERE vets.name = 'Maisy Smith' GROUP BY species.name ORDER BY COUNT(visits.visit_id) DESC LIMIT 1;
 
+/*Queries that provide answers to the questions from all projects.*/
+
+ EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+ EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+ EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+ EXPLAIN ANALYZE SELECT * FROM owners where age = 28;
+ EXPLAIN ANALYZE SELECT COUNT(*) FROM owners where age <= 30;
+ EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where vet_id >= 10;
